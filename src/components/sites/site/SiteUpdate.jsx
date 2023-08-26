@@ -1,4 +1,4 @@
-import { faLocationDot, faPlus, faX } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Card } from "react-bootstrap";
