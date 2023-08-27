@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function SideBar({ list = [] }) {
   return (
-    <ListGroup>
+    <ListGroup className="shadow-sm">
       {list.map((item, index) => {
         return (
           <Link

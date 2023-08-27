@@ -1,4 +1,4 @@
-import { faLocationDot, faX } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faLocationDot, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Card } from "react-bootstrap";
@@ -18,12 +18,20 @@ function SiteDelete() {
         </div>
       </Card.Header>
       <Card.Body>
-        <Card.Title>Suppression</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <div>Delete Form</div>
+        <Card.Title className="text-danger">Suppression</Card.Title>
+        <Card.Text>Voulez vous supprimer ce site ?</Card.Text>
+        <div className="d-flex justify-content-end">
+          <FontAwesomeIcon
+            icon={faCheck}
+            className="btn btn-sm btn-outline-danger mx-2"
+          />
+          Oui
+          <FontAwesomeIcon
+            icon={faX}
+            className="btn btn-sm btn-outline-success mx-2"
+          />
+          Non
+        </div>
       </Card.Body>
     </Card>
   );

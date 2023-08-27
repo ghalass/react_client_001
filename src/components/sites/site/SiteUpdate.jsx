@@ -1,7 +1,7 @@
 import { faLocationDot, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function SiteUpdate() {
@@ -19,11 +19,25 @@ function SiteUpdate() {
       </Card.Header>
       <Card.Body>
         <Card.Title>Modification</Card.Title>
-        <Card.Text>
+        {/* <Card.Text>
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
-        </Card.Text>
-        <div>Update Form</div>
+        </Card.Text> */}
+        <div>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control size="sm" type="text" placeholder="Nom du site" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+
+            <Button variant="primary" type="submit" className="btn btn-sm">
+              Valider
+            </Button>
+          </Form>
+        </div>
       </Card.Body>
     </Card>
   );
