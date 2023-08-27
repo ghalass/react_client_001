@@ -1,4 +1,8 @@
-import { faGears, faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronRight,
+  faHome,
+  faInfo,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
@@ -6,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <Navbar bg="light" data-bs-theme="light" className="shadow-sm">
+    <Navbar className=" navBarTop">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <img
@@ -17,13 +21,20 @@ function NavBar() {
           />
         </Navbar.Brand>
 
-        <Nav className="me-auto">
+        <Nav className="me-auto d-flex align-items-center">
           <Nav.Link as={Link} to="/">
-            <FontAwesomeIcon icon={faHome} /> Home
+            <FontAwesomeIcon icon={faHome} />
           </Nav.Link>
 
-          <Nav.Link as={Link} to={"config"}>
-            <FontAwesomeIcon icon={faGears} /> Config
+          <span
+            className="mx-1 mt-1"
+            style={{ color: "#ced4da", fontSize: "12px" }}
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </span>
+
+          <Nav.Link as={Link} to={"about"}>
+            <FontAwesomeIcon icon={faInfo} />
           </Nav.Link>
         </Nav>
       </Container>
