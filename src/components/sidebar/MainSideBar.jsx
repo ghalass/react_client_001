@@ -1,4 +1,9 @@
-import { faBars, faGears, faKeyboard } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faFileClipboard,
+  faGears,
+  faKeyboard,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -8,14 +13,19 @@ function MainSideBar() {
   const toggle = () => setIsOpen(!isOpen);
   const list = [
     {
+      title: "Saisie journalière",
+      link: "/saisiejournaliere",
+      icon: faKeyboard,
+    },
+    {
+      title: "Rapports",
+      link: "/rapports",
+      icon: faFileClipboard,
+    },
+    {
       title: "Configurations",
       link: "/config",
       icon: faGears,
-    },
-    {
-      title: "Saisie",
-      link: "/saisie",
-      icon: faKeyboard,
     },
   ];
 

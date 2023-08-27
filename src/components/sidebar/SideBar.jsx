@@ -10,7 +10,7 @@ export default function SideBar({ list = [] }) {
         return (
           <Link
             key={index}
-            className="list-group-item list-group-item-action list-group-item-light py-1"
+            className="list-group-item list-group-item-action  py-1"
             to={item.link}
           >
             <FontAwesomeIcon icon={item.icon} /> {item.title.slice(0, 20)}

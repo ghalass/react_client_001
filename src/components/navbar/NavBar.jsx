@@ -2,6 +2,7 @@ import {
   faChevronRight,
   faHome,
   faInfo,
+  faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -37,6 +38,9 @@ function NavBar() {
             <FontAwesomeIcon icon={faInfo} />
           </Nav.Link>
         </Nav>
+        <Nav.Link as={Link} to={"logout"}>
+          <FontAwesomeIcon icon={faPowerOff} />
+        </Nav.Link>
       </Container>
     </Navbar>
   );

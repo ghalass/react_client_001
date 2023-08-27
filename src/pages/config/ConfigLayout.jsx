@@ -26,17 +26,20 @@ function ConfigLayout() {
   ];
 
   return (
-    <Row>
-      <Col
-        className="border-end border-2 col-lg-2 col-md-4 col-sm-6 col-12"
-        style={{ height: "100%", minWidth: "50px" }}
-      >
-        <SideBar list={list} />
-      </Col>
-      <Col>
-        <Outlet />
-      </Col>
-    </Row>
+    <>
+      <h2 className="pageTitle">Gestion des configurations</h2>
+      <Row>
+        <Col
+          className="border-end border-2 col-lg-2 col-md-4 col-sm-6 col-12"
+          style={{ height: "100%", minWidth: "50px" }}
+        >
+          <SideBar list={list} />
+        </Col>
+        <Col>
+          <Outlet />
+        </Col>
+      </Row>
+    </>
   );
 }
 

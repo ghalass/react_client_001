@@ -2,6 +2,7 @@
   --color_navbar_bg: #f9fafc;
   --color_body_bg: #ffffff;
   --color_gray: #ced4da;
+  --color_black: #353c48;
   --color_border: #1eb7ff;
   --color_002: #fd8c73;
   --color_003: #f8f9fa;
@@ -10,8 +11,20 @@
   --bgColor_003: #f3f4f6;
 }
 
+@font-face {
+  font-family: myFont001;
+  src: url(../public/fonts/Roboto-Thin.ttf);
+}
+
+* {
+  font-family: myFont001;
+}
+
 body {
   background-color: var(--color_navbar_bg) !important;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
 }
 
 .navBarTop {
@@ -25,7 +38,8 @@ body {
 }
 .main {
   width: 100% !important;
-  padding: 20px !important;
+  padding: 10px !important;
+  padding-top: 0px !important;
 }
 
 .sidebar {
@@ -69,7 +83,7 @@ body {
   transition: all 0.1s !important;
 }
 .link:hover {
-  padding-left: 20px;
+  padding-left: 17px;
   /* background: var(--color_gray); */
 }
 .active {
@@ -82,4 +96,8 @@ body {
 .link_text {
   font-size: 15px !important;
   transition: all 0.2s !important;
+}
+
+.pageTitle {
+  color: var(--color_black) !important;
 }
