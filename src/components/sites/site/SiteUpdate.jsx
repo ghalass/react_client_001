@@ -1,10 +1,28 @@
-import { faLocationDot, faX } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faSave, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Button, Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 function SiteUpdate() {
+  const [site, siteSite] = useState({
+    title: "to14",
+    description: "desc to14",
+  });
+
+  useEffect(() => {
+    siteSite({
+      title: "to14",
+      description: "desc to14",
+    });
+  }, []);
+
+  const navigate = useNavigate();
+
   return (
     <Card border="light">
       <Card.Header className="py-1">
@@ -19,24 +37,80 @@ function SiteUpdate() {
       </Card.Header>
       <Card.Body>
         <Card.Title>Modification</Card.Title>
-        {/* <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text> */}
-        <div>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control size="sm" type="text" placeholder="Nom du site" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
 
-            <Button variant="primary" type="submit" className="btn btn-sm">
-              Valider
-            </Button>
-          </Form>
+        <div>
+          <Formik
+            initialValues={{ title: site.title, description: site.description }}
+            validationSchema={Yup.object({
+              title: Yup.string()
+                .min(2, "Ce champ doit comporter au moins 2 caractères.")
+                .max(64, "Ce champ doit comporter au maximum 64 caractères")
+                .required("Ce champ est obligatoire."),
+              description: Yup.string().max(
+                255,
+                "Ce champ doit comporter au maximum 255 caractères"
+              ),
+            })}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                /* alert(JSON.stringify(values, null, 2)); */
+                toast.success("Site modifié avec succès.");
+                setSubmitting(false);
+                navigate("/config/sites/1");
+              }, 400);
+            }}
+          >
+            {(props) => {
+              return (
+                <Form>
+                  <div className="mt-2  ">
+                    <Field
+                      className={
+                        "form-control form-control-sm " +
+                        (props.errors.title && props.touched.title
+                          ? " is-invalid"
+                          : "")
+                      }
+                      name="title"
+                      type="text"
+                      placeholder="Nom du site"
+                      autoComplete="off"
+                    />
+                    <ErrorMessage
+                      name="title"
+                      component="div"
+                      className="text-danger text-left "
+                    />
+                  </div>
+
+                  <div className="mt-2  ">
+                    <Field
+                      name="description"
+                      type="text"
+                      className="form-control form-control-sm"
+                      placeholder="Description du site"
+                      autoComplete="off"
+                      as="textarea"
+                    />
+                    <ErrorMessage
+                      name="description"
+                      component="div"
+                      className="text-danger text-left "
+                    />
+                  </div>
+
+                  <div className="mt-2 d-flex justify-content-end">
+                    <button
+                      type="submit"
+                      className="btn btn-sm btn-outline-success"
+                    >
+                      <FontAwesomeIcon icon={faSave} className="" />
+                    </button>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
         </div>
       </Card.Body>
     </Card>

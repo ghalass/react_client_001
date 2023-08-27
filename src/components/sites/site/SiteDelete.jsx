@@ -2,9 +2,12 @@ import { faCheck, faLocationDot, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function SiteDelete() {
+  const navigate = useNavigate();
+
   return (
     <Card border="light">
       <Card.Header className="py-1">
@@ -24,11 +27,18 @@ function SiteDelete() {
           <FontAwesomeIcon
             icon={faCheck}
             className="btn btn-sm btn-outline-danger mx-2"
+            onClick={() => {
+              toast.success("Site supprimé avec succès.");
+              navigate("/config/sites");
+            }}
           />
           Oui
           <FontAwesomeIcon
             icon={faX}
             className="btn btn-sm btn-outline-success mx-2"
+            onClick={() => {
+              navigate("/config/sites/1");
+            }}
           />
           Non
         </div>
