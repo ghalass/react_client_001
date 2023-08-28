@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/header/Header";
 import { Outlet } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -7,6 +7,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 function MainLayout() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <div>
       <Header />
@@ -27,9 +34,7 @@ function MainLayout() {
             theme="light"
           />
         </div>
-        <div className="main">
-          <Outlet />
-        </div>
+        <div className="main">{loading ? "Loading ..." : <Outlet />}</div>
       </Container>
     </div>
   );
