@@ -69,6 +69,8 @@ function SiteCreate() {
                   );
                   if (itemExist.length === 0) {
                     setListToAdd([...listToAdd, values]);
+                    console.log(listToAdd);
+                    toast.success("Enregistré avec succès.");
                   } else {
                     toast.warning("Ce site est dèjà dans votre liste.");
                   }
