@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import moment from "moment";
 import { Alert } from "react-bootstrap";
