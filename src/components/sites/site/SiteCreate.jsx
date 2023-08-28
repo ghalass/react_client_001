@@ -169,9 +169,9 @@ function SiteCreate() {
                       <div
                         className="btn btn-sm text-danger py-0"
                         onClick={() => {
-                          /* setListToAdd(
+                          setListToAdd(
                             listToAdd.filter((i) => i.title !== item.title)
-                          ); */
+                          );
                         }}
                       >
                         <FontAwesomeIcon icon={faMinus} />
