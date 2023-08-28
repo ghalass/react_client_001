@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import "./mainSideBar.css";
 
 function MainSideBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +33,14 @@ function MainSideBar() {
   return (
     <div
       className="sidebar shadow-sm"
-      style={{ width: isOpen ? "250px" : "50px" }}
+      style={{ width: isOpen ? "200px" : "50px" }}
     >
       <div className="top_section">
         <div className="logo" style={{ display: isOpen ? "block" : "none" }}>
           APP
         </div>
 
-        <div className="bars" style={{ marginLeft: isOpen ? "130px" : "12px" }}>
+        <div className="bars" style={{ marginLeft: isOpen ? "140px" : "12px" }}>
           <FontAwesomeIcon icon={faBars} onClick={toggle} />
         </div>
       </div>
