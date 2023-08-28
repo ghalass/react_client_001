@@ -1,0 +1,12 @@
+.mainLoader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    font-size: 25px !important;
+    color: red !important;
+}
