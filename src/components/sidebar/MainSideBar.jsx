@@ -10,7 +10,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./mainSideBar.css";
 
 function MainSideBar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const list = [
     {
@@ -33,14 +33,14 @@ function MainSideBar() {
   return (
     <div
       className="sidebar shadow-sm"
-      style={{ width: isOpen ? "200px" : "50px" }}
+      style={{ width: isOpen ? "195px" : "50px" }}
     >
       <div className="top_section">
         <div className="logo" style={{ display: isOpen ? "block" : "none" }}>
           APP
         </div>
 
-        <div className="bars" style={{ marginLeft: isOpen ? "140px" : "12px" }}>
+        <div className="bars" style={{ marginLeft: isOpen ? "135px" : "12px" }}>
           <FontAwesomeIcon icon={faBars} onClick={toggle} />
         </div>
       </div>
@@ -50,9 +50,9 @@ function MainSideBar() {
           to={item.link}
           key={index}
           className="link"
-          activeclassName="active"
+          // activeclassName="active"
         >
-          <div className="icon">
+          <div className={`icon ${!isOpen ? "notOpen" : ""}`}>
             <FontAwesomeIcon icon={item.icon} />
           </div>
           <div

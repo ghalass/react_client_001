@@ -1,7 +1,7 @@
 .sidebar {
   background: var(--color_body_bg);
   height: calc(100vh - 66px);
-  width: 200;
+  width: 195px;
   transition: all 0.2s !important;
 }
 .top_section {
@@ -15,22 +15,20 @@
   padding-left: 5px;
 }
 .bars {
-  display: flex !important;
-  font-size: 15px !important;
+  display: flex;
+  font-size: 15px;
   margin-left: 45px;
   margin-top: 5px;
   margin-bottom: 5px;
   color: var(--color_gray);
-  transition: all 0.2s !important;
+  transition: all 0.2s;
 }
 .link {
   display: flex;
   color: var(--color_gray);
   padding: 5px 15px;
   gap: 15px;
-
   text-decoration: none;
-  /*  border-radius: 15px; */
   transition: all 0.2s;
 }
 .link:hover,
@@ -46,9 +44,16 @@
 .active {
   background: var(--color_navbar_bg);
   border-left: 3px solid var(--color_border);
-
   color: #000 !important;
 }
+.active .icon {
+  color: var(--color_border);
+  margin-left: 10px;
+}
+.notOpen {
+  margin-left: 0px !important;
+}
+
 .icon,
 .link_text {
   font-size: 15px !important;

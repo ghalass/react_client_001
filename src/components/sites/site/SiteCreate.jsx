@@ -69,8 +69,7 @@ function SiteCreate() {
                   );
                   if (itemExist.length === 0) {
                     setListToAdd([...listToAdd, values]);
-                    console.log(listToAdd);
-                    toast.success("Enregistré avec succès.");
+                    // toast.success("Enregistré avec succès.");
                   } else {
                     toast.warning("Ce site est dèjà dans votre liste.");
                   }
@@ -143,6 +142,7 @@ function SiteCreate() {
               className="btn btn-sm text-success py-0"
               onClick={() => {
                 console.log(listToAdd);
+                toast.success("Enregistré avec succès.");
               }}
             >
               <FontAwesomeIcon icon={faSave} className="mx-1" />

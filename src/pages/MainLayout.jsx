@@ -22,7 +22,9 @@ function MainLayout() {
         <div>
           <Header />
           <Container fluid className="p-2 d-flex">
-            <MainSideBar />
+            <div>
+              <MainSideBar />
+            </div>
             <div className="mx-2 w-100">
               <Outlet />
             </div>
