@@ -1,4 +1,3 @@
-import { Col, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import SideBar from "../../components/sidebar/SideBar";
 import {
@@ -27,17 +26,14 @@ function ConfigLayout() {
   return (
     <>
       <h2>Gestion des configurations</h2>
-      <Row>
-        <Col
-          className="border-end border-2 col-lg-2 col-md-4 col-12"
-          style={{ height: "100%", minWidth: "50px" }}
-        >
+      <div className="d-flex justify-content-start gap-2">
+        <div className="">
           <SideBar list={list} />
-        </Col>
-        <Col>
+        </div>
+        <div className="w-100">
           <Outlet />
-        </Col>
-      </Row>
+        </div>
+      </div>
     </>
   );
 }

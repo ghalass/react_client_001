@@ -7,11 +7,12 @@ import { Link, Outlet } from "react-router-dom";
 function SitesLayout() {
   return (
     <Card border="light" className="shadow-sm">
-      <Card.Header className="py-1">
-        <div className="d-flex align-items-center justify-content-between">
-          <div>
-            <FontAwesomeIcon icon={faLocationDot} /> Gestion des sites
-          </div>
+      <Card.Body className="p-2">
+        <div className="d-flex justify-content-between align-items-center">
+          <h6>
+            <FontAwesomeIcon icon={faLocationDot} className="mx-2" />
+            <span className="mx-2">Gestion des sites</span>
+          </h6>
           <Link
             to="/config/sites/create"
             className="btn btn-sm btn-light py-0 px-1"
@@ -19,8 +20,6 @@ function SitesLayout() {
             <FontAwesomeIcon icon={faPlus} className="text-primary" />
           </Link>
         </div>
-      </Card.Header>
-      <Card.Body>
         <Outlet />
       </Card.Body>
     </Card>

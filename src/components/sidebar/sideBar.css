@@ -16,9 +16,10 @@
   cursor: pointer;
   border-radius: 0 15px 15px 0;
   padding: 5px 8px;
+  background: #f1f2f3;
 }
 .secondary-sidebar a:hover {
-  background: #f1f2f3;
+  background: #dcdedf;
   cursor: pointer;
 }
 .secondary-sidebar .active {

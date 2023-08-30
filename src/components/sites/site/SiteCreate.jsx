@@ -33,7 +33,7 @@ function SiteCreate() {
   ]);
 
   return (
-    <div className="row d-flex justify-content-center">
+    <div className="row d-flex justify-content-center p-2">
       <Card border="light" className="col-md px-0 mx-1">
         <Card.Header className="py-1">
           <div className="d-flex align-items-center justify-content-between">
