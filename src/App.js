@@ -9,11 +9,13 @@ import ConfigLayout from "./pages/config/ConfigLayout";
 import SiteCreate from "./components/sites/site/SiteCreate";
 import SitesLayout from "./components/sites/SitesLayout";
 
-import "./App.css";
 import SiteLayout from "./components/sites/site/SiteLayout";
 import SiteDelete from "./components/sites/site/SiteDelete";
 import SiteUpdate from "./components/sites/site/SiteUpdate";
 import Toast from "./components/loaders/Toast";
+import Login from "./pages/Login";
+
+import "./App.css";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Route>
+
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
       <Toast />

@@ -10,7 +10,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./mainSideBar.css";
 
 function MainSideBar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const list = [
     {
@@ -32,7 +32,7 @@ function MainSideBar() {
 
   return (
     <div
-      className="sidebar shadow-sm"
+      className="mainSidebar shadow-sm"
       style={{ width: isOpen ? "195px" : "50px" }}
     >
       <div className="top_section">

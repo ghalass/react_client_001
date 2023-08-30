@@ -1,4 +1,3 @@
-import React from "react";
 import "./mainLoader.css";
 
 function MainLoader() {

@@ -17,10 +17,11 @@
 }
 
 * {
-  font-family: myFont001;
+  box-sizing: border-box !important;
+  line-height: 17px;
 }
 
 body {
   background-color: var(--color_navbar_bg) !important;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, myFont001, sans-serif !important;
 }

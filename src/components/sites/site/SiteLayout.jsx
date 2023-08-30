@@ -1,4 +1,3 @@
-import React from "react";
 import { Card } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import SiteDetails from "./SiteDetails";

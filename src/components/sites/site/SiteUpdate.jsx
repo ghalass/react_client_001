@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 
 function SiteUpdate() {
+  const [isProcess, setIsProcess] = useState(false);
   const [site, siteSite] = useState({
     title: "to14",
     description: "desc to14",
@@ -52,12 +53,16 @@ function SiteUpdate() {
               ),
             })}
             onSubmit={(values, { setSubmitting }) => {
+              setIsProcess(true);
+              document.body.style.cursor = "wait";
               setTimeout(() => {
                 /* alert(JSON.stringify(values, null, 2)); */
                 toast.success("Site modifié avec succès.");
                 setSubmitting(false);
-                navigate("/config/sites/1");
-              }, 400);
+                // navigate("/config/sites/1");
+                setIsProcess(false);
+                document.body.style.cursor = "default";
+              }, 4000);
             }}
           >
             {(props) => {
@@ -103,8 +108,12 @@ function SiteUpdate() {
                     <button
                       type="submit"
                       className="btn btn-sm btn-outline-success"
+                      disabled={isProcess}
                     >
-                      <FontAwesomeIcon icon={faSave} className="" />
+                      <FontAwesomeIcon icon={faSave} />
+                      <span className="mx-2">
+                        {isProcess ? "Traitement…" : "Sauvegarder"}
+                      </span>
                     </button>
                   </div>
                 </Form>

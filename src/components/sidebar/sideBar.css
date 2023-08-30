@@ -1,0 +1,35 @@
+.secondary-sidebar {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: black;
+  width: 160px;
+}
+
+.secondary-sidebar a {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: black;
+  margin: 2px 0px;
+  cursor: pointer;
+  border-radius: 0 15px 15px 0;
+  padding: 5px 8px;
+}
+.secondary-sidebar a:hover {
+  background: #f1f2f3;
+  cursor: pointer;
+}
+.secondary-sidebar .active {
+  background: white;
+  border-left: 3px solid #1eb7ff;
+  color: #1eb7ff;
+}
+.secondary-sidebar-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  margin: 0px 5px;
+}

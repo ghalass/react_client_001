@@ -1,5 +1,3 @@
-import React from "react";
-
 function PageNotFound() {
   return (
     <div className="text-center text-danger mt-5">

@@ -1,20 +1,20 @@
-.sidebar {
+.mainSidebar {
   background: var(--color_body_bg);
   height: calc(100vh - 66px);
   width: 195px;
   transition: all 0.2s !important;
 }
-.top_section {
+.mainSidebar .top_section {
   display: flex;
   align-items: center !important;
   cursor: pointer !important;
   padding: 5px !important;
 }
-.logo {
+.mainSidebar .logo {
   font-size: 12px !important;
   padding-left: 5px;
 }
-.bars {
+.mainSidebar .bars {
   display: flex;
   font-size: 15px;
   margin-left: 45px;
@@ -23,35 +23,37 @@
   color: var(--color_gray);
   transition: all 0.2s;
 }
-.link {
+.mainSidebar .link {
   display: flex;
   color: var(--color_gray);
-  padding: 5px 15px;
+  padding: 10px 15px;
   gap: 15px;
   text-decoration: none;
   transition: all 0.2s;
 }
-.link:hover,
-.bars:hover {
+.mainSidebar .link:hover,
+.mainSidebar .bars:hover {
   background: var(--color_navbar_bg);
   color: #000 !important;
   transition: all 0.1s !important;
 }
-.link:hover {
+.mainSidebar .link:hover {
   padding-left: 17px;
-  /* background: var(--color_gray); */
 }
-.active {
+.mainSidebar .active {
   background: var(--color_navbar_bg);
   border-left: 3px solid var(--color_border);
   color: #000 !important;
+  transition: all 0.2s !important;
 }
-.active .icon {
+.mainSidebar .active .icon {
   color: var(--color_border);
   margin-left: 10px;
+  transition: all 0.2s !important;
 }
-.notOpen {
+.mainSidebar .notOpen {
   margin-left: 0px !important;
+  transition: all 0.2s !important;
 }
 
 .icon,

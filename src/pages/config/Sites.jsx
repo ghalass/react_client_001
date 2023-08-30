@@ -1,4 +1,3 @@
-import React from "react";
 import SitesList from "../../components/sites/SitesList";
 
 function Sites() {

@@ -1,6 +1,6 @@
 import { faCheck, faLocationDot, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+
 import { Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -23,24 +23,26 @@ function SiteDelete() {
       <Card.Body>
         <Card.Title className="text-danger">Suppression</Card.Title>
         <Card.Text>Voulez vous supprimer ce site ?</Card.Text>
-        <div className="d-flex justify-content-end">
-          <FontAwesomeIcon
-            icon={faCheck}
-            className="btn btn-sm btn-outline-danger mx-2"
+        <div className="d-flex justify-content-end align-content-center gap-2">
+          <button
+            className="btn btn-sm btn-outline-danger "
             onClick={() => {
               toast.success("Site supprimé avec succès.");
               navigate("/config/sites");
             }}
-          />
-          Oui
-          <FontAwesomeIcon
-            icon={faX}
-            className="btn btn-sm btn-outline-success mx-2"
+          >
+            <FontAwesomeIcon icon={faCheck} />
+            <span className="mx-2">Oui</span>
+          </button>
+          <button
+            className="btn btn-sm btn-outline-success"
             onClick={() => {
               navigate("/config/sites/1");
             }}
-          />
-          Non
+          >
+            <FontAwesomeIcon icon={faCheck} />
+            <span className="mx-2">Non</span>
+          </button>
         </div>
       </Card.Body>
     </Card>
