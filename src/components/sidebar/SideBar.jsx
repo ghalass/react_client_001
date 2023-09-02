@@ -8,10 +8,7 @@ export default function SideBar({ list = [] }) {
       {list.map((item, index) => {
         return (
           <NavLink as={Link} to={item.link} key={index} className="">
-            <span className="secondary-sidebar-icon">
-              <FontAwesomeIcon icon={item.icon} />
-            </span>
-            <span className=""> {item.title}</span>
+            <FontAwesomeIcon icon={item.icon} /> {item.title}
           </NavLink>
         );
       })}

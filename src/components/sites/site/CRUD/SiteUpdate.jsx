@@ -1,7 +1,7 @@
-import { faLocationDot, faSave, faX } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -26,18 +26,13 @@ function SiteUpdate() {
 
   return (
     <Card border="light">
-      <Card.Header className="py-1">
-        <div className="d-flex align-items-center justify-content-between">
-          <div>
-            <FontAwesomeIcon icon={faLocationDot} /> Modifier un site
-          </div>
+      <Card.Body>
+        <Card.Title className="d-flex justify-content-between">
+          Modification
           <Link to="/config/sites/1" className="btn btn-sm btn-light py-0 px-1">
             <FontAwesomeIcon icon={faX} className="text-primary" />
           </Link>
-        </div>
-      </Card.Header>
-      <Card.Body>
-        <Card.Title>Modification</Card.Title>
+        </Card.Title>
 
         <div>
           <Formik
@@ -54,14 +49,12 @@ function SiteUpdate() {
             })}
             onSubmit={(values, { setSubmitting }) => {
               setIsProcess(true);
-              document.body.style.cursor = "wait";
               setTimeout(() => {
                 /* alert(JSON.stringify(values, null, 2)); */
                 toast.success("Site modifié avec succès.");
                 setSubmitting(false);
-                // navigate("/config/sites/1");
+                navigate("/config/sites/1");
                 setIsProcess(false);
-                document.body.style.cursor = "default";
               }, 4000);
             }}
           >
@@ -110,10 +103,11 @@ function SiteUpdate() {
                       className="btn btn-sm btn-outline-success"
                       disabled={isProcess}
                     >
-                      <FontAwesomeIcon icon={faSave} />
-                      <span className="mx-2">
-                        {isProcess ? "Traitement…" : "Sauvegarder"}
-                      </span>
+                      {isProcess ? (
+                        <Spinner animation="border" size="sm" />
+                      ) : (
+                        <FontAwesomeIcon icon={faSave} />
+                      )}
                     </button>
                   </div>
                 </Form>

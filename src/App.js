@@ -6,12 +6,12 @@ import MainLayout from "./pages/MainLayout";
 import PageNotFound from "./pages/PageNotFound";
 import Config from "./pages/config/Config.";
 import ConfigLayout from "./pages/config/ConfigLayout";
-import SiteCreate from "./components/sites/site/SiteCreate";
+import SiteCreate from "./components/sites/site/CRUD/SiteCreate";
 import SitesLayout from "./components/sites/SitesLayout";
 
 import SiteLayout from "./components/sites/site/SiteLayout";
-import SiteDelete from "./components/sites/site/SiteDelete";
-import SiteUpdate from "./components/sites/site/SiteUpdate";
+import SiteDelete from "./components/sites/site/CRUD/SiteDelete";
+import SiteUpdate from "./components/sites/site/CRUD/SiteUpdate";
 import Toast from "./components/loaders/Toast";
 import Login from "./pages/Login";
 

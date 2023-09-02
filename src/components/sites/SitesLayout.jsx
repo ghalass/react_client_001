@@ -8,8 +8,8 @@ function SitesLayout() {
   return (
     <Card border="light" className="shadow-sm">
       <Card.Body className="p-2">
-        <div className="d-flex justify-content-between align-items-center">
-          <h6>
+        <div className="d-flex justify-content-between align-items-center mb-2">
+          <h6 className="m-0">
             <FontAwesomeIcon icon={faLocationDot} className="mx-2" />
             <span className="mx-2">Gestion des sites</span>
           </h6>

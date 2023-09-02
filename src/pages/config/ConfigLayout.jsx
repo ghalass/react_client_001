@@ -25,15 +25,9 @@ function ConfigLayout() {
 
   return (
     <>
-      <h2>Gestion des configurations</h2>
-      <div className="d-flex justify-content-start gap-2">
-        <div className="">
-          <SideBar list={list} />
-        </div>
-        <div className="w-100">
-          <Outlet />
-        </div>
-      </div>
+      <h5 className="m-0">Gestion des configurations</h5>
+      <SideBar list={list} />
+      <Outlet />
     </>
   );
 }

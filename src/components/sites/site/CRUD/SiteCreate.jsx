@@ -1,6 +1,4 @@
 import {
-  faList,
-  faLocationDot,
   faMinus,
   faPlus,
   faSave,
@@ -33,19 +31,15 @@ function SiteCreate() {
   ]);
 
   return (
-    <div className="row d-flex justify-content-center p-2">
-      <Card border="light" className="col-md px-0 mx-1">
-        <Card.Header className="py-1">
-          <div className="d-flex align-items-center justify-content-between">
-            <div>
-              <FontAwesomeIcon icon={faLocationDot} /> Ajouter un site
-            </div>
-            <Link to="/config/sites" className="btn btn-sm btn-light py-0 px-1">
-              <FontAwesomeIcon icon={faX} className="text-primary" />
-            </Link>
-          </div>
-        </Card.Header>
-        <Card.Body>
+    <div className="row p-3 pt-0 gap-2">
+      <Card border="light" className="col-md p-2 mb-1">
+        <div className="d-flex align-items-center justify-content-between">
+          <div>Ajouter un site</div>
+          <Link to="/config/sites" className="btn btn-sm btn-light py-0 px-1">
+            <FontAwesomeIcon icon={faX} className="text-primary" />
+          </Link>
+        </div>
+        <Card.Body className="p-0">
           <div>
             <Formik
               initialValues={{ title: "", description: "" }}
@@ -96,7 +90,7 @@ function SiteCreate() {
                       <ErrorMessage
                         name="title"
                         component="div"
-                        className="text-danger text-left "
+                        className="text-danger text-left fst-italic fw-lighter"
                       />
                     </div>
 
@@ -119,7 +113,7 @@ function SiteCreate() {
                     <div className="mt-2 d-flex justify-content-end">
                       <button
                         type="submit"
-                        className="btn btn-sm btn-outline-success"
+                        className="btn btn-sm btn-outline-success py-0 px-1"
                       >
                         <FontAwesomeIcon icon={faPlus} className="" />
                       </button>
@@ -132,54 +126,48 @@ function SiteCreate() {
         </Card.Body>
       </Card>
 
-      <Card border="light" className="col-md px-0 mx-1">
-        <Card.Header className="py-1">
-          <div className="d-flex align-items-center justify-content-between">
-            <div>
-              <FontAwesomeIcon icon={faList} /> Les sites à rajouter
-            </div>
-            <div
-              className="btn btn-sm text-success py-0"
-              onClick={() => {
-                console.log(listToAdd);
-                toast.success("Enregistré avec succès.");
-              }}
-            >
-              <FontAwesomeIcon icon={faSave} className="mx-1" />
-              Sauvegarder
-            </div>
+      {/* ************************ */}
+      <Card border="light" className="col-md p-2 mb-1">
+        <div className="d-flex align-items-center justify-content-between">
+          <div>Les sites à rajouter</div>
+          <div
+            className="btn btn-sm btn-light py-0 px-1"
+            onClick={() => {
+              console.log(listToAdd);
+              toast.success("Enregistré avec succès.");
+            }}
+          >
+            <FontAwesomeIcon icon={faSave} className="mx-1" />
           </div>
-        </Card.Header>
-        <Card.Body>
-          <Card.Text className="text-danger mb-1">
-            Vous devez sauvegarder cette liste avant de fermer la page.
-          </Card.Text>
-          <div className="row">
+        </div>
+        <Card.Text className="text-danger my-2 fst-italic fw-lighter">
+          Vous devez sauvegarder cette liste avant de fermer la page.
+        </Card.Text>
+        <Card.Body className="p-0">
+          <div className="d-flex justify-content-start align-items-center gap-1">
             {listToAdd.map((item, index) => (
               <Card
                 key={index}
-                style={{ width: "150px" }}
-                className="p-0 mb-1 mx-1"
+                // style={{ width: "200px" }}
+                className="p-0"
               >
-                <Card.Body className="py-1">
-                  <Card.Title>
+                <Card.Body className="p-1 d-flex justify-content-start align-items-center">
+                  <span
+                    className="btn btn-sm btn-light p-0"
+                    onClick={() => {
+                      setListToAdd(
+                        listToAdd.filter((i) => i.title !== item.title)
+                      );
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faMinus}
+                      className="mx-1 text-danger"
+                    />
+                  </span>
+                  <span className="mx-1">
                     {item.title.slice(0, 9).toUpperCase()}
-                  </Card.Title>
-                  <Card.Subtitle className="text-muted">
-                    <div className="d-flex align-content-center justify-content-between">
-                      <div>{item.description.slice(0, 10)} </div>
-                      <div
-                        className="btn btn-sm text-danger py-0"
-                        onClick={() => {
-                          setListToAdd(
-                            listToAdd.filter((i) => i.title !== item.title)
-                          );
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faMinus} />
-                      </div>
-                    </div>
-                  </Card.Subtitle>
+                  </span>
                 </Card.Body>
               </Card>
             ))}

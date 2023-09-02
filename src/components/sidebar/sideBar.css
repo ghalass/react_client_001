@@ -1,18 +1,18 @@
 .secondary-sidebar {
-  display: flex;
-  flex-direction: column;
+  /* display: inline-flex;
+  flex-direction: row; */
   font-size: 14px;
   color: black;
-  width: 160px;
+  margin: 5px 0px;
 }
 
 .secondary-sidebar a {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: inline-block;
+  /* flex-direction: row;
+  justify-content: flex-start; */
   text-decoration: none;
   color: black;
-  margin: 2px 0px;
+  margin: 2px;
   cursor: pointer;
   border-radius: 0 15px 15px 0;
   padding: 5px 8px;

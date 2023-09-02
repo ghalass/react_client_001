@@ -1,24 +1,29 @@
 import { Outlet } from "react-router-dom";
-import SiteDetails from "./SiteDetails";
-import SiteLayoutEnginsList from "./SiteLayoutEnginsList";
+import SiteDetails from "./CRUD/SiteDetails";
+import EnginsList from "./EnginsList";
 
 import { Card } from "react-bootstrap";
 
 function SiteLayout() {
   return (
-    <div className="row">
-      <div className="col mb-2">
-        <Card border="light">
-          <SiteDetails />
-          <div className="my-2 px-2">
+    <>
+      <div className="row p-3 pt-0 gap-2">
+        <Card border="light" className="col-md p-1 mb-1">
+          <Card.Body className="p-0">
+            <SiteDetails />
+          </Card.Body>
+          <div className="my-2">
             <Outlet />
           </div>
         </Card>
+
+        <Card border="light" className="col-md p-1 mb-1">
+          <Card.Body>
+            <EnginsList />
+          </Card.Body>
+        </Card>
       </div>
-      <div className="col">
-        <SiteLayoutEnginsList />
-      </div>
-    </div>
+    </>
   );
 }
 
