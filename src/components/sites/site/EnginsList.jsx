@@ -3,8 +3,12 @@ import DataTable from "react-data-table-component";
 import { Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useEffect, useState } from "react";
+import { SiteContext } from "./SiteLayout";
 
 function EnginsList() {
+  const { siteState } = useContext(SiteContext);
+  const [records, setRecords] = useState([]);
   const columns = [
     {
       name: "Engin",
@@ -49,17 +53,28 @@ function EnginsList() {
       sortable: true,
     },
   ];
-  const records = [
-    {
-      id: "1",
-      title: "901",
-      Parc: { id: 1, title: "785D" },
-      TypeParc: {
-        id: 2,
-        title: "roulage",
+  useEffect(() => {
+    setRecords([
+      {
+        id: "1",
+        title: "901",
+        Parc: { id: 1, title: "785D" },
+        TypeParc: {
+          id: 2,
+          title: "roulage",
+        },
       },
-    },
-  ];
+      {
+        id: "2",
+        title: "932",
+        Parc: { id: 1, title: "789D" },
+        TypeParc: {
+          id: 2,
+          title: "roulage",
+        },
+      },
+    ]);
+  }, []);
   return (
     <div className="">
       <DataTable

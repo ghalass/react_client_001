@@ -1,28 +1,46 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import SiteDetails from "./CRUD/SiteDetails";
 import EnginsList from "./EnginsList";
 
 import { Card } from "react-bootstrap";
+import { createContext, useEffect, useState } from "react";
+export const SiteContext = createContext("");
 
 function SiteLayout() {
+  const { id } = useParams();
+  const [siteState, setSiteState] = useState({});
+  const [err, setErr] = useState("error");
+  useEffect(() => {
+    // axios to load site with id
+    try {
+      setSiteState({
+        id: id,
+        title: "site test",
+        description: "site desc",
+      });
+    } catch (error) {}
+  }, [id]);
   return (
     <>
-      <div className="row p-3 pt-0 gap-2">
-        <Card border="light" className="col-md p-1 mb-1">
-          <Card.Body className="p-0">
-            <SiteDetails />
-          </Card.Body>
-          <div className="my-2">
-            <Outlet />
-          </div>
-        </Card>
+      <div className="alert alert-danger">{err}</div>
+      <SiteContext.Provider value={{ siteState, setSiteState }}>
+        <div className="row p-3 pt-0 gap-2">
+          <Card border="light" className="col-md p-1 mb-1">
+            <Card.Body className="p-0">
+              <SiteDetails />
+            </Card.Body>
+            <div className="my-2">
+              <Outlet />
+            </div>
+          </Card>
 
-        <Card border="light" className="col-md p-1 mb-1">
-          <Card.Body>
-            <EnginsList />
-          </Card.Body>
-        </Card>
-      </div>
+          <Card border="light" className="col-md p-1 mb-1">
+            <Card.Body>
+              <EnginsList />
+            </Card.Body>
+          </Card>
+        </div>
+      </SiteContext.Provider>
     </>
   );
 }

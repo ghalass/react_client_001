@@ -3,25 +3,31 @@ import { faPen, faTrashCan, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { SiteContext } from "../SiteLayout";
 
 function SiteDetails() {
+  const { siteState } = useContext(SiteContext);
+
   return (
     <Card.Body className="p-2">
       <div className="d-flex justify-content-between ">
         <div>
-          <Card.Title>PG11</Card.Title>
-          <Card.Text>Description</Card.Text>
+          <Card.Title>
+            {siteState.id}-{siteState.title}
+          </Card.Title>
+          <Card.Text>{siteState.description}</Card.Text>
         </div>
         <div>
           <Link
-            to="/config/sites/1/delete"
+            to={`/config/sites/${siteState.id}/delete`}
             className="btn btn-sm btn-light py-0 px-1 mx-1"
           >
             <FontAwesomeIcon icon={faTrashCan} className="text-danger" />
           </Link>
 
           <Link
-            to="/config/sites/1/update"
+            to={`/config/sites/${siteState.id}/update`}
             className="btn btn-sm btn-light py-0 px-1 mx-1"
           >
             <FontAwesomeIcon icon={faPen} className="text-success" />

@@ -1,26 +1,17 @@
 import { faSave, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import { SiteContext } from "../SiteLayout";
 
 function SiteUpdate() {
+  const { siteState, setSiteState } = useContext(SiteContext);
   const [isProcess, setIsProcess] = useState(false);
-  const [site, siteSite] = useState({
-    title: "to14",
-    description: "desc to14",
-  });
-
-  useEffect(() => {
-    siteSite({
-      title: "to14",
-      description: "desc to14",
-    });
-  }, []);
 
   const navigate = useNavigate();
 
@@ -29,14 +20,20 @@ function SiteUpdate() {
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
           Modification
-          <Link to="/config/sites/1" className="btn btn-sm btn-light py-0 px-1">
+          <Link
+            to={`/config/sites/${siteState.id}`}
+            className="btn btn-sm btn-light py-0 px-1"
+          >
             <FontAwesomeIcon icon={faX} className="text-primary" />
           </Link>
         </Card.Title>
 
         <div>
           <Formik
-            initialValues={{ title: site.title, description: site.description }}
+            initialValues={{
+              title: siteState.title,
+              description: siteState.description,
+            }}
             validationSchema={Yup.object({
               title: Yup.string()
                 .min(2, "Ce champ doit comporter au moins 2 caractères.")
@@ -50,12 +47,12 @@ function SiteUpdate() {
             onSubmit={(values, { setSubmitting }) => {
               setIsProcess(true);
               setTimeout(() => {
-                /* alert(JSON.stringify(values, null, 2)); */
                 toast.success("Site modifié avec succès.");
                 setSubmitting(false);
-                navigate("/config/sites/1");
+                setSiteState({ id: siteState.id, ...values });
+                navigate(`/config/sites/${siteState.id}`);
                 setIsProcess(false);
-              }, 4000);
+              }, 500);
             }}
           >
             {(props) => {
