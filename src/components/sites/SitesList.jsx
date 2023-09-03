@@ -39,8 +39,8 @@ function SitesList() {
   ];
 
   useEffect(() => {
-    setIsLoading(true);
     setTimeout(() => {
+      setIsLoading(true);
       axios
         .get(`${BASE_URL}/posts/`)
         .then((res) => {

@@ -19,20 +19,20 @@ function SiteUpdate() {
   const navigate = useNavigate();
 
   return (
-    <Card border="light">
-      <Card.Body>
-        <Card.Title className="d-flex justify-content-between">
-          Modification
-          <Link
-            to={`/config/sites/${siteState.id}`}
-            className="btn btn-sm btn-light py-0 px-1"
-          >
-            <FontAwesomeIcon icon={faX} className="text-primary" />
-          </Link>
-        </Card.Title>
-        {err ? (
-          <div className="alert alert-danger">{err}</div>
-        ) : (
+    <>
+      <Card border="light">
+        <Card.Body>
+          <Card.Title className="d-flex justify-content-between">
+            Modification
+            <Link
+              to={`/config/sites/${siteState.id}`}
+              className="btn btn-sm btn-light py-0 px-1"
+            >
+              <FontAwesomeIcon icon={faX} className="text-primary" />
+            </Link>
+          </Card.Title>
+          {err && <div className="alert alert-danger">{err}</div>}
+
           <div>
             <Formik
               initialValues={{
@@ -50,8 +50,8 @@ function SiteUpdate() {
                 ),
               })}
               onSubmit={(values, { setSubmitting }) => {
-                setIsProcess(true);
                 setTimeout(() => {
+                  setIsProcess(true);
                   axios
                     .put(`${BASE_URL}/posts/${siteState.id}`)
                     .then((res) => {
@@ -63,6 +63,8 @@ function SiteUpdate() {
                     })
                     .catch((err) => {
                       setErr(err.message);
+                      setIsProcess(false);
+                      setSubmitting(false);
                     });
                 }, TIMEOUT);
               }}
@@ -124,9 +126,9 @@ function SiteUpdate() {
               }}
             </Formik>
           </div>
-        )}
-      </Card.Body>
-    </Card>
+        </Card.Body>
+      </Card>
+    </>
   );
 }
 
