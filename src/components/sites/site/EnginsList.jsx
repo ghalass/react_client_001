@@ -5,10 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useState } from "react";
 import { SiteContext } from "./SiteLayout";
+import { BASE_URL, TIMEOUT } from "../../../Config";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 function EnginsList() {
   const { siteState } = useContext(SiteContext);
   const [records, setRecords] = useState([]);
+  const [err, setErr] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const columns = [
     {
       name: "Engin",
@@ -18,7 +23,7 @@ function EnginsList() {
             to={`/config/engins/${row.id}`}
             className="btn btn-sm btn-light py-0 px-1 text-uppercase"
           >
-            {row.title}
+            {row.name}
           </Link>
         );
       },
@@ -29,10 +34,10 @@ function EnginsList() {
       selector: (row) => {
         return (
           <Link
-            to={`/config/parcs/${row.Parc.id}`}
+            to={`/config/parcs/${row.id}`}
             className="btn btn-sm btn-light py-0 px-1 text-uppercase"
           >
-            {row.Parc.title}
+            {row.address.suite}
           </Link>
         );
       },
@@ -43,10 +48,10 @@ function EnginsList() {
       selector: (row) => {
         return (
           <Link
-            to={`/config/typeparcs/${row.TypeParc.id}`}
+            to={`/config/typeparcs/${row.id}`}
             className="btn btn-sm btn-light py-0 px-1 text-uppercase"
           >
-            {row.TypeParc.title}
+            {row.address.street}
           </Link>
         );
       },
@@ -54,72 +59,73 @@ function EnginsList() {
     },
   ];
   useEffect(() => {
-    setRecords([
-      {
-        id: "1",
-        title: "901",
-        Parc: { id: 1, title: "785D" },
-        TypeParc: {
-          id: 2,
-          title: "roulage",
-        },
-      },
-      {
-        id: "2",
-        title: "932",
-        Parc: { id: 1, title: "789D" },
-        TypeParc: {
-          id: 2,
-          title: "roulage",
-        },
-      },
-    ]);
-  }, []);
+    setTimeout(() => {
+      setIsLoading(true);
+      axios
+        .get(`${BASE_URL}/posts/${siteState.id}`)
+        .then((res) => {
+          setRecords(res.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setErr(err.message);
+          setIsLoading(false);
+        });
+    }, TIMEOUT);
+  }, [siteState.id]);
   return (
-    <div className="">
-      <DataTable
-        noDataComponent={
-          <Alert key={"idx"} variant={"info"} className="my-2">
-            <FontAwesomeIcon icon={faInfoCircle} className="mr-2" />
-            Il n'y a aucun enregistrement à afficher
-          </Alert>
-        }
-        columns={columns}
-        data={records}
-        dense="true"
-        // direction="auto"
-        fixedHeader="true"
-        fixedHeaderScrollHeight="400px"
-        // highlightOnHover="true"
-        // pointerOnHover="true"
-        responsive="true"
-        // subHeader="true"
-        // subHeaderAlign="right"
-        // subHeaderWrap="true"
-        persistTableHead="true"
-        /* selectableRows="true" */
-        /* selectableRowsSingle="true"
+    <>
+      {isLoading ? (
+        <div className="alert alert-danger">{err}</div>
+      ) : err ? (
+        <div className="alert alert-danger">{err}</div>
+      ) : (
+        <div className="">
+          <DataTable
+            noDataComponent={
+              <Alert key={"idx"} variant={"info"} className="my-2">
+                <FontAwesomeIcon icon={faInfoCircle} className="mr-2" />
+                Il n'y a aucun enregistrement à afficher
+              </Alert>
+            }
+            columns={columns}
+            data={records}
+            dense="true"
+            // direction="auto"
+            fixedHeader="true"
+            fixedHeaderScrollHeight="400px"
+            // highlightOnHover="true"
+            // pointerOnHover="true"
+            responsive="true"
+            // subHeader="true"
+            // subHeaderAlign="right"
+            // subHeaderWrap="true"
+            persistTableHead="true"
+            /* selectableRows="true" */
+            /* selectableRowsSingle="true"
         selectableRowsHighlight="true"
         selectableRowsNoSelectAll="true"
         selectableRowsVisibleOnly="true" */
-        /* progressPending={isLoading} */
-        progressComponent="Loading ..."
-        onRowClicked={(row, event) => {
-          // console.log(event);
-          // setObject(row);
-          // navigate(`/config/sites/${row.id}`);
-        }}
-        onSelectedRowsChange={({
-          allSelected,
-          selectedCount,
-          selectedRows,
-        }) => {
-          /* setObject(selectedRows.length !== 0 ? selectedRows[0] : {});
+            /* progressPending={isLoading} */
+            progressComponent="Loading ..."
+            onRowClicked={(row, event) => {
+              // console.log(event);
+              // setObject(row);
+              // navigate(`/config/sites/${row.id}`);
+            }}
+            onSelectedRowsChange={({
+              allSelected,
+              selectedCount,
+              selectedRows,
+            }) => {
+              /* setObject(selectedRows.length !== 0 ? selectedRows[0] : {});
           setOperation(""); */
-        }}
-        pagination="true"
-      />
-    </div>
+            }}
+            pagination="true"
+          />
+        </div>
+      )}
+    </>
   );
 }
 
