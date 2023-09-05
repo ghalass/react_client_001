@@ -39,17 +39,18 @@ function SitesList() {
   ];
 
   useEffect(() => {
+    setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(true);
       axios
         .get(`${BASE_URL}/posts/`)
         .then((res) => {
           setRecords(res.data);
+          setIsLoading(false);
         })
         .catch((err) => {
           setErr(err.message);
-        })
-        .finally(setIsLoading(false));
+          setIsLoading(false);
+        });
     }, TIMEOUT);
   }, []);
 
