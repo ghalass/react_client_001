@@ -1,2 +1,2 @@
-export const BASE_URL = "https://jsonplaceholder.typicode.com";
-export const TIMEOUT = 1000;
+export const API_URL = "http://localhost:3001";
+export const TIMEOUT = 2000;

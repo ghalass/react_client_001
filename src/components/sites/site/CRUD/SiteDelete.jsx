@@ -6,11 +6,14 @@ import { Card, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SiteContext } from "../SiteLayout";
+import { API_URL, TIMEOUT } from "../../../../Config";
+import axios from "axios";
 
 function SiteDelete() {
   const navigate = useNavigate();
   const { siteState } = useContext(SiteContext);
   const [isProcess, setIsProcess] = useState(false);
+  const [err, setErr] = useState(null);
 
   return (
     <Card border="light">
@@ -32,20 +35,30 @@ function SiteDelete() {
             onClick={() => {
               setIsProcess(true);
               setTimeout(() => {
-                toast.success("Site supprimé avec succès.");
-                navigate("/config/sites");
-                setIsProcess(false);
-              }, 5000);
+                axios
+                  .delete(`${API_URL}/sites/${siteState.id}`)
+                  .then((res) => {
+                    navigate(`/config/sites`);
+                    setIsProcess(false);
+                    toast.success("Site supprimé avec succès.");
+                  })
+                  .catch((err) => {
+                    setErr(err.message);
+                    setIsProcess(false);
+                  });
+              }, TIMEOUT);
             }}
           >
             {isProcess ? (
-              <Spinner animation="border" size="sm" />
+              <>
+                <Spinner animation="border" size="sm" />
+              </>
             ) : (
               <>
                 <FontAwesomeIcon icon={faCheck} />
-                <span className="mx-2">Oui</span>
               </>
             )}
+            <span className="mx-2">Oui</span>
           </button>
           <button
             className="btn btn-sm btn-outline-success"
@@ -58,6 +71,7 @@ function SiteDelete() {
             <span className="mx-2">Non</span>
           </button>
         </div>
+        {err && <div className="alert alert-danger my-1">{err}</div>}
       </Card.Body>
     </Card>
   );

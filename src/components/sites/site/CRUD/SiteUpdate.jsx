@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { SiteContext } from "../SiteLayout";
 import axios from "axios";
-import { BASE_URL, TIMEOUT } from "../../../../Config";
+import { API_URL, TIMEOUT } from "../../../../Config";
 
 function SiteUpdate() {
   const { siteState, setSiteState } = useContext(SiteContext);
@@ -50,10 +50,10 @@ function SiteUpdate() {
                 ),
               })}
               onSubmit={(values, { setSubmitting }) => {
+                setIsProcess(true);
                 setTimeout(() => {
-                  setIsProcess(true);
                   axios
-                    .put(`${BASE_URL}/posts/${siteState.id}`)
+                    .put(`${API_URL}/sites`, { id: siteState.id, ...values })
                     .then((res) => {
                       setSiteState({ id: siteState.id, ...values });
                       navigate(`/config/sites/${siteState.id}`);

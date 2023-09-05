@@ -6,29 +6,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Card, Spinner } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import { toast } from "react-toastify";
+import axios from "axios";
+import { API_URL, TIMEOUT } from "../../../../Config";
 
 function SiteCreate() {
-  const [listToAdd, setListToAdd] = useState([
-    {
-      title: "PG11sdgsdvddssssss",
-      description: "pg11 descpg11 descpg11 descpg11 desc",
-    },
-    {
-      title: "TO14",
-      description: "to14 desc",
-    },
-    {
-      title: "MHDTT",
-      description: "mhdtt desc",
-    },
-  ]);
+  const [listToAdd, setListToAdd] = useState([]);
+  const [isProcess, setIsProcess] = useState(false);
+  const [err, setErr] = useState(null);
+  const navigate = useNavigate();
+  const [nbrAdded, setNbrAdded] = useState(0);
 
   return (
     <div className="row p-3 pt-0 gap-2">
@@ -63,6 +56,7 @@ function SiteCreate() {
                   );
                   if (itemExist.length === 0) {
                     setListToAdd([...listToAdd, values]);
+
                     // toast.success("Enregistré avec succès.");
                   } else {
                     toast.warning("Ce site est dèjà dans votre liste.");
@@ -130,15 +124,61 @@ function SiteCreate() {
       <Card border="light" className="col-md p-2 mb-1">
         <div className="d-flex align-items-center justify-content-between">
           <div>Les sites à rajouter</div>
-          <div
+          <button
             className="btn btn-sm btn-light py-0 px-1"
+            disabled={isProcess}
             onClick={() => {
-              console.log(listToAdd);
-              toast.success("Enregistré avec succès.");
+              if (listToAdd.length !== 0) {
+                setIsProcess(true);
+                setTimeout(() => {
+                  listToAdd.map((item) => {
+                    axios
+                      .post(`${API_URL}/sites`, item)
+                      .then((res) => {
+                        //  navigate(`/config/sites`);
+                        //  setIsProcess(false);
+                        if (res.data.error) {
+                          // toast.error(res.data.error);
+                        } else {
+                          setNbrAdded(nbrAdded + 1);
+                          setListToAdd(
+                            listToAdd.filter((i) => i.title !== item.title)
+                          );
+                        }
+                        setIsProcess(false);
+                      })
+                      .catch((err) => {
+                        toast.error(err.message);
+                        setErr(err.message);
+                        setIsProcess(false);
+                      });
+                  });
+                  setIsProcess(false);
+
+                  if (nbrAdded !== listToAdd.length) {
+                    toast.warning(
+                      `${listToAdd.length - nbrAdded}/${
+                        listToAdd.length
+                      } non ajouté.`
+                    );
+                    if (nbrAdded != 0) {
+                      toast.success(`${nbrAdded} ajouté avec succes.`);
+                    }
+                  } else {
+                    toast.success(`${listToAdd.length} ajouté avec succes.`);
+                  }
+                }, TIMEOUT);
+              } else {
+                toast.info(`Aucun site n'est rajouté !`);
+              }
             }}
           >
-            <FontAwesomeIcon icon={faSave} className="mx-1" />
-          </div>
+            {isProcess ? (
+              <Spinner animation="border" size="sm" />
+            ) : (
+              <FontAwesomeIcon icon={faSave} className="mx-1" />
+            )}
+          </button>
         </div>
         <Card.Text className="text-danger my-2 fst-italic fw-lighter">
           Vous devez sauvegarder cette liste avant de fermer la page.

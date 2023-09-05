@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_URL, TIMEOUT } from "../../Config";
+import { API_URL, TIMEOUT } from "../../Config";
 import Loader from "../loaders/Loader";
 
 function SitesList() {
@@ -23,7 +23,7 @@ function SitesList() {
     },
     {
       name: "Description",
-      selector: (row) => row.body.slice(0, 20),
+      selector: (row) => row.description.slice(0, 20),
       sortable: true,
     },
     // {
@@ -42,7 +42,7 @@ function SitesList() {
     setIsLoading(true);
     setTimeout(() => {
       axios
-        .get(`${BASE_URL}/posts/`)
+        .get(`${API_URL}/sites/`)
         .then((res) => {
           setRecords(res.data);
           setIsLoading(false);
